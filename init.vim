@@ -1,7 +1,7 @@
 " https://github.com/thaerkh/vim-workspace
 
 "let g:plug_url_format = 'git@github.com:%s.git'
-let g:plug_url_format = 'git+ssh://github.com/%s.git'
+"let g:plug_url_format = 'git+ssh://github.com/%s.git'
 
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	silent execute "!curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
