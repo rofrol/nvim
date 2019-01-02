@@ -31,6 +31,9 @@ let g:rustfmt_autosave = 1
 let g:rustfmt_command = 'rustup run nightly rustfmt'
 
 Plug 'qpkorr/vim-bufkill'
+
+Plug 'Soares/base16.nvim'
+
 call plug#end()
 
 " https://github.com/kristijanhusak/neovim-config/blob/52e9e886dd256c5c267c70d2afa72796f3390a92/init.vim#L48 
@@ -221,4 +224,9 @@ colo default
 
 "hi StatusLine ctermfg=White ctermbg=Black
 
-"set background=light
+set termguicolors
+set background=light
+
+" https://vi.stackexchange.com/questions/5567/non-default-colorschemes-cant-be-loaded-setting-them-manually-after-startup-wo
+autocmd VimEnter * colo summerfruit
+
