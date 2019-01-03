@@ -34,6 +34,11 @@ Plug 'qpkorr/vim-bufkill'
 
 Plug 'Soares/base16.nvim'
 
+" needed to use full url
+" https://github.com/junegunn/vim-plug/issues/133#issuecomment-65886124
+" commenting out - does not cycle colors installed with Soares/base16.nvim
+"Plug 'https://github.com/codingluke/setcolors.vim'
+
 call plug#end()
 
 " https://github.com/kristijanhusak/neovim-config/blob/52e9e886dd256c5c267c70d2afa72796f3390a92/init.vim#L48 
@@ -229,4 +234,42 @@ set background=light
 
 " https://vi.stackexchange.com/questions/5567/non-default-colorschemes-cant-be-loaded-setting-them-manually-after-startup-wo
 autocmd VimEnter * colo summerfruit
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" http://vim.wikia.com/wiki/Switch_color_schemes
+" https://github.com/xolox/vim-colorscheme-switcher
+" https://stackoverflow.com/questions/7331940/how-to-get-the-list-of-all-installed-color-schemes-in-vim
+
+if v:version < 700 || exists('loaded_switchcolor') || &cp
+	finish
+endif
+
+let loaded_switchcolor = 1
+
+let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n") + split(globpath(&runtimepath, 'base16.nvim/colors/*.vim'), "\n")
+let s:swcolors = map(paths, 'fnamemodify(v:val, ":t:r")')
+let s:swskip = ['bespin', 'codeschool', 'darktooth', 'embers', 'gooey', 'greenscreen', 'marrakesh', 'redscreen', 'royal', 'solarized', 'blue', 'darkblue', 'desert', 'elflord', 'evening', 'industry', 'koehler', 'murphy', 'pablo', 'peachpuff', 'ron', 'slate', 'torte', 'apathy'] + ['chalk']
+let s:swindex = 0
+
+function! SwitchColor(swinc)
+	let s:swindex += a:swinc
+	let i = s:swindex % len(s:swcolors)
+
+	" in skip list
+	if (index(s:swskip, s:swcolors[i]) == -1)
+	      execute "colorscheme " . s:swcolors[i]
+	else
+		return SwitchColor(a:swinc)
+	endif
+
+	" show current name on screen. :h :echo-redraw
+	redraw
+	execute "colorscheme"
+endfunction
+
+ map <F8>        :call SwitchColor(1)<CR>
+imap <F8>   <Esc>:call SwitchColor(1)<CR>
+
+ map <S-F8>      :call SwitchColor(-1)<CR>
+imap <S-F8> <Esc>:call SwitchColor(-1)<CR>
 
