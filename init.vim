@@ -235,9 +235,10 @@ colo default
 
 set termguicolors
 set background=light
-
+colo summerfruit
+" not needed now, do not know why
 " https://vi.stackexchange.com/questions/5567/non-default-colorschemes-cant-be-loaded-setting-them-manually-after-startup-wo
-autocmd VimEnter * colo summerfruit
+"autocmd VimEnter * colo summerfruit
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://vim.wikia.com/wiki/Switch_color_schemes
