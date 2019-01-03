@@ -39,6 +39,9 @@ Plug 'Soares/base16.nvim'
 " commenting out - does not cycle colors installed with Soares/base16.nvim
 "Plug 'https://github.com/codingluke/setcolors.vim'
 
+" no good schemes with light bg
+"Plug 'rafi/awesome-vim-colorschemes'
+
 call plug#end()
 
 " https://github.com/kristijanhusak/neovim-config/blob/52e9e886dd256c5c267c70d2afa72796f3390a92/init.vim#L48 
@@ -247,6 +250,7 @@ endif
 let loaded_switchcolor = 1
 
 let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n") + split(globpath(&runtimepath, 'base16.nvim/colors/*.vim'), "\n")
+
 let s:swcolors = map(paths, 'fnamemodify(v:val, ":t:r")')
 let s:swskip = ['bespin', 'codeschool', 'darktooth', 'embers', 'gooey', 'greenscreen', 'marrakesh', 'redscreen', 'royal', 'solarized', 'blue', 'darkblue', 'desert', 'elflord', 'evening', 'industry', 'koehler', 'murphy', 'pablo', 'peachpuff', 'ron', 'slate', 'torte', 'apathy'] + ['chalk']
 let s:swindex = 0
