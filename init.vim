@@ -41,6 +41,7 @@ Plug 'Soares/base16.nvim'
 
 " no good schemes with light bg
 "Plug 'rafi/awesome-vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 
@@ -249,7 +250,7 @@ endif
 
 let loaded_switchcolor = 1
 
-let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n") + split(globpath(&runtimepath, 'base16.nvim/colors/*.vim'), "\n")
+let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n")
 
 let s:swcolors = map(paths, 'fnamemodify(v:val, ":t:r")')
 let s:swskip = ['bespin', 'codeschool', 'darktooth', 'embers', 'gooey', 'greenscreen', 'marrakesh', 'redscreen', 'royal', 'solarized', 'blue', 'darkblue', 'desert', 'elflord', 'evening', 'industry', 'koehler', 'murphy', 'pablo', 'peachpuff', 'ron', 'slate', 'torte', 'apathy'] + ['chalk']
@@ -262,6 +263,7 @@ function! SwitchColor(swinc)
 	" in skip list
 	if (index(s:swskip, s:swcolors[i]) == -1)
 	      execute "colorscheme " . s:swcolors[i]
+	      set background=light
 	else
 		return SwitchColor(a:swinc)
 	endif
