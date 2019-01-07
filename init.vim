@@ -34,6 +34,8 @@ Plug 'qpkorr/vim-bufkill'
 
 Plug 'Soares/base16.nvim'
 
+Plug 'owickstrom/vim-colors-paramount'
+
 " needed to use full url
 " https://github.com/junegunn/vim-plug/issues/133#issuecomment-65886124
 " commenting out - does not cycle colors installed with Soares/base16.nvim
@@ -42,6 +44,16 @@ Plug 'Soares/base16.nvim'
 " no good schemes with light bg
 "Plug 'rafi/awesome-vim-colorschemes'
 " Plug 'flazz/vim-colorschemes'
+
+Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'sbdchd/neoformat'
+" haskell: use brittany as used by https://github.com/haskell/haskell-ide-engine#features
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 
 call plug#end()
 
@@ -235,7 +247,8 @@ colo default
 
 set termguicolors
 set background=light
-colo summerfruit
+"colo summerfruit
+colo paramount
 " not needed now, do not know why
 " https://vi.stackexchange.com/questions/5567/non-default-colorschemes-cant-be-loaded-setting-them-manually-after-startup-wo
 "autocmd VimEnter * colo summerfruit
