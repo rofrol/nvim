@@ -55,6 +55,9 @@ augroup fmt
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
+" https://stackoverflow.com/questions/1205286/renaming-the-current-file-in-vim/25053688#25053688 
+Plug 'tpope/vim-eunuch'
+
 call plug#end()
 
 " https://github.com/kristijanhusak/neovim-config/blob/52e9e886dd256c5c267c70d2afa72796f3390a92/init.vim#L48 
