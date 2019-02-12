@@ -52,7 +52,11 @@ Plug 'sbdchd/neoformat'
 
 augroup fmt
   autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
+  " autocmd BufWritePre * undojoin | Neoformat
+  " There are some error showing when I do `:w` after `elm make` file in the
+  " console, maybe this will be better
+  " https://github.com/sbdchd/neoformat/issues/134#issuecomment-347180213
+  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 
 " https://stackoverflow.com/questions/1205286/renaming-the-current-file-in-vim/25053688#25053688 
