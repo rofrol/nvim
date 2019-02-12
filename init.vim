@@ -296,3 +296,7 @@ imap <F8>   <Esc>:call SwitchColor(1)<CR>
  map <S-F8>      :call SwitchColor(-1)<CR>
 imap <S-F8> <Esc>:call SwitchColor(-1)<CR>
 
+" Disable italic in paramount colorscheme
+" This could be alternative for any colorscheme https://www.reddit.com/r/vim/comments/5iop1e/disable_all_italic_highlights/dba3kqd/
+hi Special ctermfg=243 gui=NONE guifg=#767676
+hi Comment ctermfg=243 gui=NONE guifg=#767676
