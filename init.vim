@@ -23,8 +23,9 @@ Plug 'raghur/fruzzy', {'do': { -> fruzzy#install()}}
 Plug 'tpope/vim-obsession'
 let g:obsession_no_bufenter = 1  " https://github.com/tpope/vim-obsession/issues/40
 
-" gc to comment lines selected
-Plug 'tpope/vim-commentary'
+" no need to select line to comment it like in vim-commentary, just <leader>cc to toggle
+Plug 'scrooloose/nerdcommenter'
+map <leader>c <plug>NERDCommenterToggle
 
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
@@ -133,6 +134,10 @@ set nonu
 " Works in Ubuntu WSL
 inoremap jk <Esc>
 "vnoremap jk <Esc>
+
+" better to map Caps Lock as additional Esc, so now Caps Lock is pressed
+" and it will work in visual mode
+" https://askubuntu.com/questions/574208/deactivate-caps-lock-in-14-04/574253#574253
 
 " set Frame title
 " https://github.com/equalsraf/neovim-qt/issues/95#issuecomment-304661632
