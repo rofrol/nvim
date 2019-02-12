@@ -47,7 +47,7 @@ Plug 'owickstrom/vim-colors-paramount'
 
 Plug 'christoomey/vim-tmux-navigator'
 
-" Disabling for now, no async and maybe errors
+" Disabling for now, no async and maybe errors, also w0rp/ale has linter also
 " https://github.com/sbdchd/neoformat/issues/106
 "Plug 'sbdchd/neoformat'
 "" haskell: use brittany as used by https://github.com/haskell/haskell-ide-engine#features
@@ -71,6 +71,8 @@ Plug 'w0rp/ale'
 " https://stackoverflow.com/questions/49784158/show-multiline-flow-errors-in-vim-status-line/49915382#49915382
 let g:ale_echo_msg_format = '%linter% says %s'
 let g:ale_fix_on_save = 1
+" keep the sign gutter open at all times
+let g:ale_sign_column_always = 1
 let g:ale_fixers = {'elm': ['elm-format']}
 " Linter works, :ALEInfo shows that linter 'make' is enabled
 
@@ -102,6 +104,7 @@ cmap <S-Insert> <C-R>*
 nnoremap gev :e $MYVIMRC<CR>
 nnoremap gsv :so $MYVIMRC<CR>
 
+" quick search and replace
 nmap <Leader>s :%s//g<Left><Left>
 
 " Somehow keybindings are not set, even with `let g:elm_setup_keybindings = 1`
@@ -207,7 +210,8 @@ command! Session if filereadable(stdpath('config').'/session.vim') | exe 'source
 " not needed when shell set to cmd on Windows
 " Problem with elm format from elm-vim
 " https://github.com/ElmCast/elm-vim/issues/80#issuecomment-427222915
-let g:elm_format_autosave = 1
+" Not needed when w0rp/ale is used
+"let g:elm_format_autosave = 1
 " https://stackoverflow.com/questions/51272435/vim-autocommand-on-write-pass-full-file-path
 " https://vi.stackexchange.com/questions/3060/suppress-output-from-a-vim-autocomand
 "autocmd BufWritePost *.elm silent! !elm-format --yes %:p
@@ -250,10 +254,6 @@ nmap <c-leftmouse> gx
 " https://stackoverflow.com/questions/10969366/vim-automatically-formatting-golang-source-code-when-saving/10969574#10969574
 "autocmd FileType rust autocmd BufWritePre <buffer> RustFmt
 
-" atm it is bad with Ubuntu WSL
-"colo delek
-colo default
-
 " does not work in alacritty
 " https://neovim.io/doc/user/scroll.html
 "map <ScrollWheelUp> <C-Y>
@@ -267,10 +267,17 @@ colo default
 
 "hi StatusLine ctermfg=White ctermbg=Black
 
-set termguicolors
+" not needed?
+"set termguicolors
+
 set background=light
 "colo summerfruit
 colo paramount
+" Disable italic in paramount colorscheme
+" This could be alternative for any colorscheme https://www.reddit.com/r/vim/comments/5iop1e/disable_all_italic_highlights/dba3kqd/
+hi Special ctermfg=243 gui=NONE guifg=#767676
+hi Comment ctermfg=243 gui=NONE guifg=#767676
+
 " not needed now, do not know why
 " https://vi.stackexchange.com/questions/5567/non-default-colorschemes-cant-be-loaded-setting-them-manually-after-startup-wo
 "autocmd VimEnter * colo summerfruit
@@ -315,7 +322,3 @@ imap <F8>   <Esc>:call SwitchColor(1)<CR>
  map <S-F8>      :call SwitchColor(-1)<CR>
 imap <S-F8> <Esc>:call SwitchColor(-1)<CR>
 
-" Disable italic in paramount colorscheme
-" This could be alternative for any colorscheme https://www.reddit.com/r/vim/comments/5iop1e/disable_all_italic_highlights/dba3kqd/
-hi Special ctermfg=243 gui=NONE guifg=#767676
-hi Comment ctermfg=243 gui=NONE guifg=#767676
