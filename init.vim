@@ -47,17 +47,32 @@ Plug 'owickstrom/vim-colors-paramount'
 
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'sbdchd/neoformat'
-" haskell: use brittany as used by https://github.com/haskell/haskell-ide-engine#features
+" Disabling for now, no async and maybe errors
+" https://github.com/sbdchd/neoformat/issues/106
+"Plug 'sbdchd/neoformat'
+"" haskell: use brittany as used by https://github.com/haskell/haskell-ide-engine#features
+"
+"augroup fmt
+"  autocmd!
+"  " autocmd BufWritePre * undojoin | Neoformat
+"  " There are some error showing when I do `:w` after `elm make` file in the
+"  " console, maybe this will be better
+"  " https://github.com/sbdchd/neoformat/issues/134#issuecomment-347180213
+"  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+"augroup END
 
-augroup fmt
-  autocmd!
-  " autocmd BufWritePre * undojoin | Neoformat
-  " There are some error showing when I do `:w` after `elm make` file in the
-  " console, maybe this will be better
-  " https://github.com/sbdchd/neoformat/issues/134#issuecomment-347180213
-  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-augroup END
+Plug 'w0rp/ale'
+" You need to make sure that the linter binary is executable and is in PATH 
+" https://www.reddit.com/r/neovim/comments/a8mc29/linting_of_jinja_template_files_in_neovim_with/ecdh8c6/
+" Set the format of the echo msg so we know which thing is complaining
+" https://github.com/w0rp/ale/issues/1960
+" TODO:
+" Open a list window with linting errors
+" https://stackoverflow.com/questions/49784158/show-multiline-flow-errors-in-vim-status-line/49915382#49915382
+let g:ale_echo_msg_format = '%linter% says %s'
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {'elm': ['elm-format']}
+" Linter works, :ALEInfo shows that linter 'make' is enabled
 
 " https://stackoverflow.com/questions/1205286/renaming-the-current-file-in-vim/25053688#25053688 
 Plug 'tpope/vim-eunuch'
