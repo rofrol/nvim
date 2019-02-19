@@ -129,10 +129,14 @@ set wildmode=list:longest,full " Command <Tab> completion, list matches, then lo
 set noswapfile
 set nonu
 
+" disabling bc it is better to map Caps Lock to Esc. Sometimes jk does not
+" work, and with mapping I am disabling Caps Lock, so it is win-win situation. 
 " https://www.reddit.com/r/vim/comments/5c9dxg/using_jk_as_escaping_to_normal_mode/
 " https://gist.github.com/rayaxiom/2689488#gistcomment-2186451
 " Works in Ubuntu WSL
-inoremap jk <Esc>
+"inoremap jk <Esc>
+
+"do not enable as it causes problems in visual mode
 "vnoremap jk <Esc>
 
 " better to map Caps Lock as additional Esc, so now Caps Lock is pressed
