@@ -316,6 +316,7 @@ function! SwitchColor(swinc)
 	if (index(s:swskip, s:swcolors[i]) == -1)
 	      execute "colorscheme " . s:swcolors[i]
 	      set background=light
+	      set termguicolors
 	else
 		return SwitchColor(a:swinc)
 	endif
@@ -328,6 +329,7 @@ endfunction
  map <F8>        :call SwitchColor(1)<CR>
 imap <F8>   <Esc>:call SwitchColor(1)<CR>
 
- map <S-F8>      :call SwitchColor(-1)<CR>
-imap <S-F8> <Esc>:call SwitchColor(-1)<CR>
+"does not work
+" map <F7>      :call SwitchColor(-1)<CR>
+"imap <F9> <Esc>:call SwitchColor(-1)<CR>
 
